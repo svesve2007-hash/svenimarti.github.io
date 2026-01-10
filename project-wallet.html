@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Analytics - Singapore Birth Rate Analysis | Academic Project | Sveni Marti Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #7c3aed;
+            --dark-color: #1e293b;
+            --light-color: #f8fafc;
+            --gray-color: #94a3b8;
+            --academic-color: #10b981;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+header.scrolled {
+    padding: 10px 0;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: white !important;
+    text-decoration: none;
+}
+
+.logo span {
+    color: #2563eb;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 30px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+nav ul li a:hover {
+    color: #2563eb;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #2563eb;
+    transition: all 0.3s ease;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+.mobile-menu-btn {
+    display: none;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+/* Adjust project detail padding to account for fixed header */
+.project-detail {
+    padding: 150px 0 100px;
+    min-height: 100vh;
+}
+/* ========== END HEADER STYLES ========== */
+
+
+
+/* Footer Styles */
+footer {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: white;
+    padding: 60px 0 20px;
+    position: relative;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+}
+
+.footer-content {
+    width: 100%;
+}
+
+.footer-main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-section h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.footer-section h3 span {
+    color: var(--primary-color);
+}
+
+.footer-section h4 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.footer-section p {
+    color: #cbd5e1;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: #cbd5e1;
+    text-decoration: none;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer-links a:hover {
+    color: var(--primary-color);
+    transform: translateX(5px);
+}
+
+.footer-links a i {
+    font-size: 0.8rem;
+}
+
+.contact-info {
+    list-style: none;
+}
+
+.contact-info li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+    color: #cbd5e1;
+}
+
+.contact-info i {
+    color: var(--primary-color);
+    width: 20px;
+    text-align: center;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.copyright p {
+    color: #94a3b8;
+    font-size: 0.9rem;
+}
+
+.footer-legal {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.footer-legal p {
+    color: #94a3b8;
+    font-size: 0.9rem;
+}
+
+.last-updated {
+    color: #64748b !important;
+    font-size: 0.8rem !important;
+}
+
+/* Responsive Footer */
+@media (max-width: 768px) {
+    .footer-main {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .footer-legal {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; line-height: 1.6; color: var(--dark-color); background-color: #f8fafc; }
+        
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        .project-detail { padding: 150px 0 100px; min-height: 100vh; }
+        
+        .back-button {
+            display: inline-flex; align-items: center; gap: 10px;
+            color: var(--primary-color); text-decoration: none;
+            font-weight: 600; margin-bottom: 30px; transition: var(--transition);
+        }
+        
+        .back-button:hover { gap: 15px; }
+        
+        .project-header { margin-bottom: 50px; }
+        .project-header h1 { font-size: 2.8rem; color: var(--dark-color); margin-bottom: 10px; }
+        .project-header .academic-badge {
+            display: inline-block;
+            background: var(--academic-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .project-header .course-info {
+            font-size: 1.1rem; 
+            color: var(--gray-color); 
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        .project-header p { font-size: 1.2rem; color: var(--gray-color); max-width: 800px; }
+        
+        .project-gallery {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px; margin: 40px 0;
+        }
+        
+        .gallery-item { 
+    border-radius: 10px; 
+    
+    box-shadow: var(--shadow);
+    
+}
+.gallery-item img { 
+    width: 100%; 
+    height: 100%; /* Changed from 200px to 100% */
+    /* object-fit: cover;  */
+    display: block;
+}
+        
+        .project-content { display: grid; grid-template-columns: 2fr 1fr; gap: 50px; margin: 40px 0; }
+        
+        .project-description { font-size: 1.1rem; line-height: 1.8; }
+        
+        .project-details {
+            background: white; padding: 30px; border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        .project-details h3 { color: var(--primary-color); margin-bottom: 20px; }
+        .detail-item { margin-bottom: 20px; }
+        .detail-item h4 { color: var(--dark-color); margin-bottom: 5px; }
+        .detail-item p { color: var(--gray-color); }
+        
+        .tech-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+        .tech-tag {
+            background-color: #e0f2fe; color: var(--primary-color);
+            padding: 5px 15px; border-radius: 20px;
+            font-size: 0.9rem; font-weight: 500;
+        }
+        
+        /* New styles for academic content */
+        .content-section {
+            margin-bottom: 40px;
+        }
+        
+        .content-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+        }
+        
+        .content-section h4 {
+            color: var(--dark-color);
+            margin: 20px 0 10px;
+            font-size: 1.2rem;
+        }
+        
+        .academic-highlight {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.05));
+            border-left: 4px solid var(--academic-color);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(124, 58, 237, 0.1));
+            border-left: 4px solid var(--primary-color);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .result-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            border-top: 4px solid var(--primary-color);
+        }
+        
+        .result-card.academic {
+            border-top: 4px solid var(--academic-color);
+        }
+        
+        .result-card h5 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+        
+        .result-card.academic h5 {
+            color: var(--academic-color);
+        }
+        
+        .result-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin: 10px 0;
+        }
+        
+        .timeline {
+            margin: 20px 0;
+            padding-left: 20px;
+            border-left: 3px solid var(--primary-color);
+        }
+        
+        .timeline-item {
+            padding: 10px 0;
+            position: relative;
+        }
+        
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 15px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary-color);
+        }
+        
+        .challenge-list, .goal-list, .learning-list {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        
+        .challenge-list li, .goal-list li, .learning-list li {
+            margin-bottom: 8px;
+        }
+        
+        .role-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .role-list li {
+            padding: 8px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .role-list li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 10px 0;
+        }
+        
+        .skill-tag {
+            background: #f1f5f9;
+            color: var(--dark-color);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+        }
+
+        .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.dashboard-item {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.dashboard-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+}
+
+.dashboard-item i {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.dashboard-item h6 {
+    color: var(--dark-color);
+    margin-bottom: 5px;
+}
+        
+
+        
+        @media (max-width: 768px) {
+            .project-content { grid-template-columns: 1fr; }
+            .project-header h1 { font-size: 2.2rem; }
+            .results-grid { grid-template-columns: 1fr; }
+            .dashboard-grid { grid-template-columns: 1fr; }
+        }
+
+
+        /* Add this to your CSS to style the findings section */
+.findings-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.finding-card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    border-top: 3px solid var(--primary-color);
+}
+
+.finding-card.accent {
+    border-top: 3px solid var(--academic-color);
+}
+
+.finding-card h4 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.finding-card.accent h4 {
+    color: var(--academic-color);
+}
+
+.finding-card i {
+    font-size: 1.2rem;
+}
+
+.finding-content {
+    color: var(--dark-color);
+    line-height: 1.6;
+}
+
+.recommendation-list {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 10px;
+}
+
+.recommendation-list li {
+    padding: 8px 0;
+    padding-left: 25px;
+    position: relative;
+    color: var(--dark-color);
+}
+
+.recommendation-list li:before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.feedback-box {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.05));
+    border-left: 4px solid var(--academic-color);
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+    color: var(--dark-color);
+}
+
+.quote-mark {
+    color: var(--academic-color);
+    font-size: 1.5rem;
+    margin-right: 5px;
+}
+
+/* Clean detail items without borders */
+.detail-item {
+    margin-bottom: 20px;
+}
+
+.detail-item:last-child {
+    margin-bottom: 0;
+}
+
+.detail-item h4 {
+    color: var(--dark-color);
+    margin-bottom: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.detail-item p {
+    color: var(--gray-color);
+    font-size: 1rem;
+}
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(124, 58, 237, 0.1));
+            border-left: 4px solid var(--primary-color);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+                .challenge-list, .goal-list {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        
+        .challenge-list li, .goal-list li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+        <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#home" class="logo">Sveni <span>Marti</span> Digital Portfolio</a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav>
+                    <ul id="navMenu">
+                        <li><a href="digitalportfolio.html#home">Home</a></li>
+                        <li><a href="digitalportfolio.html#about">About</a></li>
+                        <li><a href="#digitalportfolio.html#projects">Projects</a></li>
+                        <li><a href="digitalportfolio.html#certifications">Certifications</a></li>
+                        <li><a href="digitalportfolio.html#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div class="project-detail">
+        <div class="container">
+            <a href="digitalportfolio.html#projects" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Projects
+            </a>
+            
+            <div class="project-header">
+                
+                <h1>Business Analytics: Singapore Birth Rate Analysis</h1>
+            
+                <p>A data analysis project investigating psychological and financial stress factors affecting Singapore's declining birth rate, applying descriptive, diagnostic, and comparative analytics techniques.</p>
+            </div>
+            
+            <div class="project-gallery">
+                <div class="gallery-item">
+                    <img src="images/Screenshot 2026-01-08 224433.png" alt="Data Analysis Dashboard">
+                </div>
+
+                <div class="gallery-item">
+                    <img src="images/Screenshot 2026-01-08 224600.png" alt="Data Research">
+                </div>
+            </div>
+            
+            <div class="project-content">
+    <div class="project-description">
+        
+        <!-- Project Scope -->
+        <div class="content-section">
+            <h3>Project Scope & Research Focus</h3>
+            
+            <h4>Scenario</h4>
+            <p>Our team decided to analyze Singapore's declining birth rate as a <strong>simulated consultancy project</strong> for the National Population and Talent Division. Each team member focused on different socio-economic factors, with my specialization being psychological and financial stress impacts.</p>
+            
+            <h4>My Research Hypothesis</h4>
+            <div class="highlight-box">
+                <p><strong>Primary Hypothesis:</strong> Psychological and financial stress decreases willingness to have children among Singapore residents.</p>
+                <p><strong>Research Question:</strong> To what extent do different types of stress (financial, work, relationship) influence fertility decisions?</p>
+            </div>
+            
+        </div>
+        
+        <!-- Goals and Challenges Section -->
+        <div class="content-section">
+            <h3>Project Goals & Challenges</h3>
+            
+            <h4>What were the main goals, challenges & solutions?</h4>
+
+            <div class="highlight-box"> <h4>Goals:</h4> <ul class="goal-list"> <li><strong>Comprehensive Analysis:</strong> Investigate Singapore's declining birth rate using multiple business analytics frameworks</li> <li><strong>Methodological Application:</strong> Apply descriptive, diagnostic, and comparative analytics techniques to fertility data</li> <li><strong>Stress Factor Investigation:</strong> Research psychological and financial stress impacts on family planning decisions</li> <li><strong>Data Visualization:</strong> Create interactive Tableau dashboards to communicate complex socio-economic relationships</li> <li><strong>Team Synthesis:</strong> Integrate individual research findings into cohesive, evidence-based recommendations</li> <li><strong>Academic Delivery:</strong> Present professional analysis meeting course standards within 12-week timeline</li> </ul>
+             </div>
+
+
+             <div class="highlight-box">
+    <h4>Challenges & Solutions:</h4>
+    <ul class="challenge-list">
+        <li><strong>Data Integration:</strong> Handling diverse data formats from multiple research sources - solved by creating standardized data collection templates and cleaning protocols</li>
+        <li><strong>Analysis Alignment:</strong> Establishing consistent methodologies across individual analyses - addressed through shared analytical frameworks and regular methodology reviews</li>
+        <li><strong>Time Management:</strong> Balancing independent work with collaborative team requirements - managed with clear deadlines and structured weekly checkpoint meetings</li>
+        <li><strong>Dashboard Consistency:</strong> Coordinating individual visualizations into a unified interface - achieved through shared color schemes and standardized design guidelines</li>
+        <li><strong>Story Cohesion:</strong> Integrating separate analytical narratives into a single compelling story - accomplished through multiple synthesis sessions and narrative alignment workshops</li>
+    </ul>
+</div>
+
+
+
+
+        </div>
+
+                    
+                    <!-- My Role and Analytical Approach -->
+                    <div class="content-section">
+                        <h3>My Role & Analytical Methodology</h3>
+                        
+                        <h4>Role in the Team</h4>
+    
+                        <ul class="role-list">
+                            <li>Researching stress-related datasets and academic literature</li>
+                            <li>Cleaning and preparing stress metrics data</li>
+                            <li>Developing analytical models for stress-fertility correlation</li>
+                            <li>Creating Tableau dashboards for stress factor visualization</li>
+                            <li>Synthesizing findings into evidence-based recommendations</li>
+                            <li>Contributing to the final group report and presentation</li>
+                        </ul>
+                        
+                        <h4>Analytical Framework Applied</h4>
+                        <div class="academic-highlight">
+                            <h4>Three Types of Analytics Used:</h4>
+                            <ul>
+                                <li><strong>Descriptive Analytics:</strong> Identifying patterns in stress and fertility data</li>
+                                <li><strong>Diagnostic Analytics:</strong> Understanding why stress affects fertility decisions</li>
+                                <li><strong>Comparative Analytics:</strong> Comparing Singapore with Finland (less academic pressure)</li>
+                            </ul>
+                        </div>
+                        
+                    </div>
+                    
+                    <!-- Work Process -->
+
+
+                    <!-- Work Process -->
+<div class="content-section">
+    <h3>Academic Work Process & Timeline</h3>
+    
+    <h4>Project Management Approach</h4>
+    <p>We followed a <strong>structured academic project timeline</strong> over our 12-week semester, progressing from problem identification to final presentation:</p>
+    
+    <div class="timeline">
+        <div class="timeline-item">
+            <strong>Weeks 1-2: Problem Definition & Brainstorming</strong><br>
+            • Group discussions to identify Singapore's declining birth rate as our research topic<br>
+            • Brainstormed potential contributing factors and research angles<br>
+            • Formulated our central problem statement: "What factors contribute to Singapore's declining birth rate?"
+        </div>
+        
+        <div class="timeline-item">
+            <strong>Weeks 3-4: Hypothesis Development & Focus Areas</strong><br>
+            • Developed testable hypotheses about birth rate influencers<br>
+            • Each team member selected a specific focus area within the broader problem<br>
+            • I chose to focus on psychological and financial stress factors<br>
+            • Documented research questions and planned analytical approaches
+        </div>
+        
+        <div class="timeline-item">
+            <strong>Weeks 5-6: Individual Data Research & Collection</strong><br>
+            • Independently researched and gathered data for our respective focus areas<br>
+            • I sourced stress-related metrics from Singapore government statistics and academic journals<br>
+            • Cleaned and prepared datasets specific to psychological/financial stress indicators<br>
+            • Created data dictionaries and documentation for my dataset
+        </div>
+        
+        <div class="timeline-item">
+            <strong>Weeks 7-8: Individual Analysis & Chart Development</strong><br>
+            • Conducted independent statistical analysis on my stress data using Excel<br>
+            • Built individual charts and visualizations showing stress-fertility correlations<br>
+            • Created 6 specific visualizations focusing on different stress dimensions<br>
+            • Prepared initial insights and findings from my individual analysis
+        </div>
+        
+        <div class="timeline-item">
+            <strong>Weeks 9-10: Dashboard Integration & Synthesis</strong><br>
+            • Combined all individual charts and analyses into unified Tableau dashboards<br>
+            • Integrated my stress analytics with other team members' focus areas<br>
+            • Created interactive dashboards that told a comprehensive story<br>
+            • Identified cross-cutting themes and integrated insights across different factors
+        </div>
+        
+        <div class="timeline-item">
+            <strong>Weeks 11-12: Recommendations & Final Presentation</strong><br>
+            • Synthesized findings into evidence-based policy recommendations<br>
+            • Developed a cohesive narrative connecting all focus areas<br>
+            • Prepared final report and presentation materials<br>
+            • Presented our comprehensive analysis to class and instructors
+        </div>
+    </div>
+    
+    <h4>Team Collaboration Process</h4>
+    <div class="academic-highlight">
+        <h4>Our Collaborative Workflow:</h4>
+        <ul>
+            <li><strong>Weekly Meetings:</strong> Regular sync-ups to align progress and share findings</li>
+            <li><strong>Independent Work:</strong> Each member responsible for their focus area analysis</li>
+            <li><strong>Integration Sessions:</strong> Dedicated meetings to combine individual work</li>
+            <li><strong>Peer Review:</strong> Cross-reviewing each other's analysis for quality assurance</li>
+            <li><strong>Iterative Refinement:</strong> Multiple rounds of feedback and improvement</li>
+        </ul>
+    </div>
+    
+    <h4>Key Dashboards Developed</h4>
+    <p style="margin-bottom: 20px; color: var(--gray-color); font-size: 0.95rem;">
+        <i class="fas fa-mouse-pointer" style="color: var(--primary-color); margin-right: 5px;"></i>
+        Click on any dashboard below to see what it looks like
+    </p>
+    
+    <div class="dashboard-grid">
+        <div class="dashboard-item" onclick="openModal('stress-parenthood')">
+            <div class="dashboard-header">
+                <i class="fas fa-heart"></i>
+                <div class="click-indicator">Click to View</div>
+            </div>
+            <h6>Stress & Parenthood</h6>
+            <p>Dating, marriage, and parenting stress impacts</p>
+        </div>
+        <div class="dashboard-item" onclick="openModal('work-stress')">
+            <div class="dashboard-header">
+                <i class="fas fa-briefcase"></i>
+                <div class="click-indicator">Click to View</div>
+            </div>
+            <h6>Work Stress</h6>
+            <p>Working hours and burnout effects</p>
+        </div>
+        <div class="dashboard-item" onclick="openModal('motherhood-career')">
+            <div class="dashboard-header">
+                <i class="fas fa-female"></i>
+                <div class="click-indicator">Click to View</div>
+            </div>
+            <h6>Motherhood & Career</h6>
+            <p>Career barriers for mothers</p>
+        </div>
+        <div class="dashboard-item" onclick="openModal('household-responsibilities')">
+            <div class="dashboard-header">
+                <i class="fas fa-balance-scale"></i>
+                <div class="click-indicator">Click to View</div>
+            </div>
+            <h6>Household Responsibilities</h6>
+            <p>Gender roles division</p>
+        </div>
+        <div class="dashboard-item" onclick="openModal('education-stress')">
+            <div class="dashboard-header">
+                <i class="fas fa-graduation-cap"></i>
+                <div class="click-indicator">Click to View</div>
+            </div>
+            <h6>Education Stress</h6>
+            <p>Academic pressure comparison</p>
+        </div>
+        <div class="dashboard-item" onclick="openModal('financial-stress')">
+            <div class="dashboard-header">
+                <i class="fas fa-money-bill-wave"></i>
+                <div class="click-indicator">Click to View</div>
+            </div>
+            <h6>Financial Stress</h6>
+            <p>Money conflicts in relationships</p>
+        </div>
+    </div>
+    
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal">
+        <div class="modal-container">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <div class="modal-content">
+                <div class="image-container">
+                    <img id="modalImage" src="" alt="Dashboard Image">
+                </div>
+                <div id="modalCaption"></div>
+            </div>
+        </div>
+    </div>
+    
+
+</div>
+
+<style>
+    /* Dashboard header to contain icon and click indicator */
+    .dashboard-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+        width: 100%;
+    }
+    
+    .dashboard-header i {
+        font-size: 2rem;
+        color: var(--primary-color);
+    }
+    
+    /* Click indicator */
+    .click-indicator {
+        background: var(--academic-color);
+        color: white;
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 600;
+    }
+    
+    .dashboard-item {
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+    }
+    
+    .dashboard-item:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow);
+    }
+    
+    .dashboard-item h6 {
+        color: var(--dark-color);
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+        width: 100%;
+    }
+    
+    .dashboard-item p {
+        color: var(--gray-color);
+        font-size: 0.9rem;
+        line-height: 1.5;
+        width: 100%;
+        margin: 0;
+    }
+    
+    /* Modal styles */
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.9);
+        z-index: 1000;
+        animation: fadeIn 0.3s;
+        overflow-y: auto;
+    }
+    
+    .modal-container {
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+    
+    .modal-close {
+        position: fixed;
+        top: 20px;
+        right: 30px;
+        color: white;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 1001;
+        transition: all 0.3s ease;
+        background: rgba(0,0,0,0.5);
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+    }
+    
+    .modal-close:hover {
+        color: var(--academic-color);
+        transform: scale(1.1);
+        background: rgba(0,0,0,0.7);
+    }
+    
+    .modal-content {
+        max-width: 90%;
+        margin: 60px auto 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        animation: zoomIn 0.3s;
+    }
+    
+    .image-container {
+        width: 100%;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    
+    #modalImage {
+        max-width: 100%;
+        max-height: 70vh;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+        object-fit: contain;
+    }
+    
+    #modalCaption {
+        color: white;
+        text-align: center;
+        padding: 15px;
+        font-size: 1.1rem;
+        background-color: rgba(0,0,0,0.7);
+        border-radius: 5px;
+        max-width: 80%;
+        margin: 0 auto;
+    }
+    
+    @media (max-width: 768px) {
+        .modal-content {
+            max-width: 95%;
+            margin: 50px auto 20px;
+        }
+        
+        .modal-close {
+            top: 10px;
+            right: 15px;
+            font-size: 30px;
+            width: 40px;
+            height: 40px;
+        }
+        
+        #modalCaption {
+            max-width: 95%;
+            font-size: 1rem;
+            padding: 10px;
+        }
+        
+        .click-indicator {
+            font-size: 0.7rem;
+            padding: 3px 8px;
+        }
+        
+        .dashboard-header i {
+            font-size: 1.8rem;
+        }
+    }
+</style>
+
+<script>
+    // Dashboard images data
+// Dashboard images data with local paths
+const dashboardImages = {
+    'stress-parenthood': {
+        src: "images/Screenshot 2026-01-08 224433.png",
+        caption: 'Stress & Parenthood Dashboard: Analyzing dating, marriage, and parenting stress impacts on fertility decisions'
+    },
+    'work-stress': {
+        src: "images/Screenshot 2026-01-08 224441.png",
+        caption: 'Work Stress Dashboard: Correlation between working hours, burnout, and family planning'
+    },
+    'motherhood-career': {
+        src: "images/Screenshot 2026-01-08 224450.png",
+        caption: 'Motherhood & Career Dashboard: Career progression barriers for mothers in Singapore'
+    },
+    'household-responsibilities': {
+        src: "images/Screenshot 2026-01-08 224500.png",
+        caption: 'Household Responsibilities Dashboard: Analysis of gender roles division and childcare responsibilities'
+    },
+    'education-stress': {
+        src: "images/Screenshot 2026-01-08 224511.png",
+        caption: 'Education Stress Dashboard: Comparison of academic pressure systems in Singapore vs other countries'
+    },
+    'financial-stress': {
+        src: "images/Screenshot 2026-01-08 224547.png",
+        caption: 'Financial Stress Dashboard: Impact of money conflicts and financial pressures on relationship stability'
+    }
+};
+    
+    function openModal(dashboardId) {
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalCaption = document.getElementById('modalCaption');
+        
+        if (dashboardImages[dashboardId]) {
+            modalImage.src = dashboardImages[dashboardId].src;
+            modalCaption.textContent = dashboardImages[dashboardId].caption;
+            modal.style.display = 'block';
+        }
+    }
+    
+    function closeModal() {
+        const modal = document.getElementById('imageModal');
+        modal.style.display = 'none';
+    }
+    
+    // Close modal when clicking outside the image
+    document.getElementById('imageModal').addEventListener('click', function(e) {
+        if (e.target.id === 'imageModal' || e.target.classList.contains('modal-container')) {
+            closeModal();
+        }
+    });
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && document.getElementById('imageModal').style.display === 'block') {
+            closeModal();
+        }
+    });
+</script>
+
+
+
+
+
+                    
+                    <!-- Learning Outcomes -->
+                    <div class="content-section">
+                        <h3>Learning Outcomes & Skills Developed</h3>
+                        
+                        <div class="academic-highlight">
+                            <h4>Key Skills Gained:</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Tableau Visualization</span>
+                                <span class="skill-tag">Statistical Analysis</span>
+                                <span class="skill-tag">Data Storytelling</span>
+                                <span class="skill-tag">Research Methodology</span>
+                                <span class="skill-tag">Team Collaboration</span>
+                                <span class="skill-tag">Policy Analysis</span>
+                                <span class="skill-tag">Academic Writing</span>
+                                <span class="skill-tag">Presentation Skills</span>
+                            </div>
+                        </div>
+                        
+
+                    </div>
+                    
+                    <!-- Technologies Used -->
+                    <div class="tech-tags">
+                        <span class="tech-tag">Tableau</span>
+                        <span class="tech-tag">Microsoft Excel</span>
+                        <span class="tech-tag">Statistical Analysis</span>
+                        <span class="tech-tag">Data Visualization</span>
+                        <span class="tech-tag">Research Methods</span>
+                        <span class="tech-tag">Academic Writing</span>
+                        <span class="tech-tag">Team Collaboration</span>
+                        <span class="tech-tag">Presentation Skills</span>
+                    </div>
+                </div>
+
+                <div class="project-details">
+                    <h3>Academic Details</h3>
+                    
+                    <div class="detail-item">
+                        <h4>Course</h4>
+                        <p>Business Analytics</p>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <h4>Duration</h4>
+                        <p>12 Weeks</p>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <h4>Team Size</h4>
+                        <p>5 Members</p>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <h4>My Role</h4>
+                        <p>Stress Analytics Lead</p>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <h4>Final Grade</h4>
+                        <p>A</p>
+                    </div>
+                    
+                    <h3 style="margin-top: 30px;">Analysis Results</h3>
+                    <div class="findings-container">
+                        <div class="finding-card">
+                            <h4><i class="fas fa-search"></i> Key Findings</h4>
+                            <div class="finding-content">
+                                Strong correlation between stress metrics and fertility intentions, with financial pressure as primary factor
+                            </div>
+                        </div>
+                        
+                        <div class="finding-card">
+                            <h4><i class="fas fa-chart-bar"></i> Analytics Types</h4>
+                            <div class="finding-content">
+                                Descriptive, Diagnostic, Comparative
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                    
+                    <h3 style="margin-top: 30px;">Policy Recommendations</h3>
+                    <div class="finding-card">
+                        <h4><i class="fas fa-lightbulb"></i> Based on Analysis</h4>
+                        <ul class="recommendation-list">
+                            <li>Promote flexible work arrangements</li>
+                            <li>Enhance parental leave policies</li>
+                            <li>Improve mental health support</li>
+                            <li>Reform education system pressure</li>
+                            <li>Encourage shared household responsibilities</li>
+                        </ul>
+                    </div>
+                    
+                    <h3 style="margin-top: 30px;">Course Learning</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Data Analysis</span>
+                        <span class="skill-tag">Visualization</span>
+                        <span class="skill-tag">Research</span>
+                        <span class="skill-tag">Teamwork</span>
+                        <span class="skill-tag">Communication</span>
+                        <span class="skill-tag">Problem Solving</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-main">
+
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="digitalportfolio.html#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="digitalportfolio.html#about"><i class="fas fa-chevron-right"></i> About</a></li>
+                        <li><a href="digitalportfolio.html#projects"><i class="fas fa-chevron-right"></i> Projects</a></li>
+                        <li><a href="digitalportfolio.html#certifications"><i class="fas fa-chevron-right"></i> Certifications</a></li>
+                        <li><a href="digitalportfolio.html#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-envelope"></i> henrylee0041@gmail.com</li>
+                        <li><i class="fas fa-phone"></i> +65 8000 0000</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Singapore</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <p>&copy; <span id="currentYear"></span> Sveni Marti. All rights reserved.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</footer>
+<script>
+
+    
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navMenu = document.getElementById('navMenu');
+    
+    if (mobileMenuBtn && navMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+    }
+    
+    // Close mobile menu when clicking a link
+    document.querySelectorAll('nav ul li a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (navMenu) {
+                navMenu.classList.remove('active');
+                if (mobileMenuBtn) {
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            }
+        });
+    });
+    
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('header');
+        if (header) {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        }
+    });
+    
+    // Set current year in footer
+    document.addEventListener('DOMContentLoaded', function() {
+        const currentYear = new Date().getFullYear();
+        const yearElement = document.getElementById('currentYear');
+        if (yearElement) {
+            yearElement.textContent = currentYear;
+        }
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#' || !targetId.startsWith('#')) return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    e.preventDefault();
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    });
+
+    // Close mobile menu when clicking a link
+document.querySelectorAll('nav ul li a').forEach(link => {
+    link.addEventListener('click', () => {
+        if (navMenu) {
+            navMenu.classList.remove('active');
+            if (mobileMenuBtn) {
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        }
+    });
+});
+</script>
+</body>
+</html>
+
